@@ -1,0 +1,11 @@
+[project]
+name = "ImageClassifierGUI"
+version = "1.0.0"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.3.0",
+    "onnxruntime>=1.22.0",
+    "pillow>=11.3.0",
+    "pyside6>=6.9.0",
+]
