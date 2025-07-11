@@ -20,6 +20,7 @@ class ImageManager:
 
         return False
 
+    @property
     def next_image(self) -> bool:
         if 0 <= self.current_index < len(self.image_paths) - 1:
             self.current_index += 1
@@ -27,6 +28,7 @@ class ImageManager:
 
         return False
 
+    @property
     def prev_image(self) -> bool:
         if self.current_index > 0:
             self.current_index -= 1
@@ -49,7 +51,8 @@ class ImageManager:
 
         return None
 
-    def get_current_status(self) -> Tuple[str, str]:
+    @property
+    def current_status(self) -> Tuple[str, str]:
         path = self.current_path
 
         if not path:

@@ -12,16 +12,13 @@ def main() -> None:
     app = QApplication(sys.argv)
 
     try:
-        ConfigManager.load_config(Path("./config/app.toml"))
+        config_manager = ConfigManager()
+        config_manager.load_config(Path("./config/app.toml"))
     except FileNotFoundError as e:
-        QMessageBox.critical(
-            None,
-            "Error",
-            f"{e}",
-        )
+        QMessageBox.critical(None, "Error", f"{e}")
         sys.exit(1)
 
-    config = ConfigManager.get_config()
+    config = config_manager.get_config()
 
     app.setStyle(config["app"]["style"])
     app.setFont(QFont(config["app"]["font"]))

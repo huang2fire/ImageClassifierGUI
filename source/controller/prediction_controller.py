@@ -45,4 +45,4 @@ class PredictionController:
         if top_class_name:
             self._chart_panel.update_info(top_class_name, top_confidence)
 
-        self._chart_panel.plot_barchart(probs, self._class.classes)
+        self._chart_panel.update_chart(probs, self._class.classes)

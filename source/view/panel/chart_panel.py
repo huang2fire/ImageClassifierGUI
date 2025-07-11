@@ -61,22 +61,22 @@ class ChartPanel(QWidget):
         self.name_label.setText(f"{cfg['name_label']} {name}")
         self.conf_label.setText(f"{cfg['conf_label']} {confidence:.2f}%")
 
-    def clear_info(self) -> None:
+    def _clear_info(self) -> None:
         cfg = self._config["chart_panel"]
 
         self.name_label.setText(cfg["name_null"])
         self.conf_label.setText(cfg["conf_null"])
 
-    def clear_chart(self) -> None:
+    def _clear_chart(self) -> None:
         self.chart.removeAllSeries()
         for axis in self.chart.axes():
             self.chart.removeAxis(axis)
 
     def clear_all(self) -> None:
-        self.clear_info()
-        self.clear_chart()
+        self._clear_info()
+        self._clear_chart()
 
-    def plot_barchart(self, probs: np.ndarray, classes: Dict[str, str]) -> None:
+    def update_chart(self, probs: np.ndarray, classes: Dict[str, str]) -> None:
         cfg = self._config["plot"]
 
         top_n = min(self._config["plot"]["top_n"], len(classes))
@@ -90,7 +90,7 @@ class ChartPanel(QWidget):
         values = [float(probs[idx]) for idx in topn_indices]
 
         # 清理旧图表
-        self.clear_chart()
+        self._clear_chart()
 
         # 数据系列
         bar_set = QBarSet("")

@@ -15,7 +15,7 @@ class ImageController:
         config: Dict[str, Any],
     ) -> None:
         self._view = main_view
-        self._model = image_manager
+        self._image = image_manager
         self._config = config
 
         self._image_panel = self._view.image_panel
@@ -38,25 +38,25 @@ class ImageController:
         if not dir_path:
             return
 
-        self._model.load_images_from_dir(dir_path)
+        self._image.load_images_from_dir(dir_path)
         self._update_image_panel()
 
     def _show_next_image(self) -> None:
-        if self._model.next_image():
+        if self._image.next_image:
             self._update_image_panel()
 
     def _show_prev_image(self) -> None:
-        if self._model.prev_image():
+        if self._image.prev_image:
             self._update_image_panel()
 
     def _update_image_display(self) -> None:
-        if self._model.current_path:
-            self._image_panel.update_image(QPixmap(self._model.current_path))
+        if self._image.current_path:
+            self._image_panel.update_image(QPixmap(self._image.current_path))
 
     def _update_image_panel(self) -> None:
         self._image_panel.clear_all()
         self._chart_panel.clear_all()
 
         self._update_image_display()
-        name, idx_str = self._model.get_current_status()
+        name, idx_str = self._image.current_status
         self._image_panel.update_info(name, idx_str)
