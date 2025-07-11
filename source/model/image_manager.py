@@ -12,8 +12,10 @@ class ImageManager:
 
     def load_images_from_dir(self, dir_path: str) -> bool:
         self.image_paths = load_paths(dir_path, self._extensions)
+
         if self.image_paths:
             self.current_index = 0
+
             return True
 
         return False

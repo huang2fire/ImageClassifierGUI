@@ -18,8 +18,9 @@ class ImageController:
         self._model = image_manager
         self._config = config
 
-        self._image_panel = main_view.image_panel
-        self._control_panel = main_view.control_panel
+        self._image_panel = self._view.image_panel
+        self._chart_panel = self._view.chart_panel
+        self._control_panel = self._view.control_panel
 
         self._connect_signals()
 
@@ -37,8 +38,8 @@ class ImageController:
         if not dir_path:
             return
 
-        if self._model.load_images_from_dir(dir_path):
-            self._update_image_panel()
+        self._model.load_images_from_dir(dir_path)
+        self._update_image_panel()
 
     def _show_next_image(self) -> None:
         if self._model.next_image():
@@ -53,6 +54,9 @@ class ImageController:
             self._image_panel.update_image(QPixmap(self._model.current_path))
 
     def _update_image_panel(self) -> None:
+        self._image_panel.clear_all()
+        self._chart_panel.clear_all()
+
         self._update_image_display()
         name, idx_str = self._model.get_current_status()
         self._image_panel.update_info(name, idx_str)

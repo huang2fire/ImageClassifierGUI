@@ -18,7 +18,13 @@ class ModelManager:
     def load_models_from_dir(self, dir_path: str) -> bool:
         self.model_paths = load_paths(dir_path, self._extensions)
 
-        return bool(self.model_paths)
+        if self.model_paths:
+            return True
+
+        self.model_paths = []
+        self.ort_session = None
+
+        return False
 
     def set_active(self, index: int) -> bool:
         if not (0 <= index < len(self.model_paths)):

@@ -17,6 +17,7 @@ class ModelController:
         self._model = model_manager
         self._config = config
 
+        self._chart_panel = self._view.chart_panel
         self._control_panel = self._view.control_panel
 
         self._connect_signals()
@@ -33,14 +34,15 @@ class ModelController:
         if not dir_path:
             return
 
-        if self._model.load_models_from_dir(dir_path):
-            self._update_model_combobox()
+        self._model.load_models_from_dir(dir_path)
+        self._update_model_combobox()
 
     def _select_model(self, index: int) -> None:
         model_index = index - 1
 
         if model_index >= 0:
             self._model.set_active(model_index)
+            self._chart_panel.clear_all()
 
     def _update_model_combobox(self) -> None:
         combobox = self._control_panel.model_combobox

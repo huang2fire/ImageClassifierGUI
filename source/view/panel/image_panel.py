@@ -58,6 +58,13 @@ class ImagePanel(QWidget):
         self.name_label.setText(cfg["name_null"])
         self.idx_label.setText(cfg["idx_null"])
 
+    def clear_image(self) -> None:
+        self.image_label.clear()
+
+    def clear_all(self) -> None:
+        self.clear_info()
+        self.clear_image()
+
     def update_image(self, pixmap: QPixmap) -> None:
         self.image_label.setPixmap(
             pixmap.scaled(
