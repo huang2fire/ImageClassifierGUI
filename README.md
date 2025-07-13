@@ -6,6 +6,8 @@
 
 基于 PySide6 和 ONNX Runtime 的图像分类桌面应用
 
+**简体中文** | [English](README.en-US.md)
+
 </div>
 
 ## 界面预览
@@ -41,13 +43,11 @@ uv sync
 
 ```bash
 uv run main.py
-# 或
-python main.py
 ```
 
 ## 使用说明
 
-应用配置文件位于 `config/app.toml`，可自定义界面风格、字体等参数。
+应用配置文件位于 [`config/app.toml`](config/app.toml)，可自定义界面风格、字体等参数。
 
 应用支持的类别标签 JSON 文件的内容格式如下：
 
@@ -61,7 +61,7 @@ python main.py
 }
 ```
 
-应用支持图像文件格式可在配置文件中定义：
+应用支持的图像文件格式可在配置文件中定义：
 
 ```toml
 [load]
